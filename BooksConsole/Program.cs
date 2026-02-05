@@ -78,26 +78,59 @@ namespace BooksConsole
             }
 
 
-            // 5. Crear un caso de uso que permita agregar un libro al sistema.
-            Console.WriteLine("\n--- Agregando un nuevo libro ---");
-            int initialBookCount = libraryService.GetAllBooks().Count;
-            Console.WriteLine($"  Número inicial de libros: {initialBookCount}");
+            // 5. Crear un caso de uso que permita agregar un libro al sistema (interactivo).
+            Console.WriteLine("\n--- Agregando un nuevo libro (interactivo) ---");
 
-            Autor newAuthor = new Autor { Nombre = "Douglas Adams", PaisDeOrigen = "Reino Unido", AnioNacimiento = 1952 };
-            Libro newBook = new Libro
+            Console.WriteLine("Por favor, introduce los datos del Autor:");
+            Console.Write("Nombre del Autor: ");
+            string autorNombre = Console.ReadLine() ?? string.Empty;
+            Console.Write("País de Origen del Autor: ");
+            string autorPais = Console.ReadLine() ?? string.Empty;
+            Console.Write("Año de Nacimiento del Autor: ");
+            int autorAnioNacimiento;
+            while (!int.TryParse(Console.ReadLine(), out autorAnioNacimiento))
             {
-                Nombre = "The Hitchhiker's Guide to the Galaxy",
-                ISBN = "978-0345391803",
-                Genero = "Ciencia ficción",
-                AnioPublicacion = 1979,
-                Editorial = "Pan Books",
-                Autores = new List<Autor> { newAuthor }
+                Console.Write("Entrada inválida. Por favor, introduce un número para el año de nacimiento: ");
+            }
+
+            Autor nuevoAutor = new Autor
+            {
+                Nombre = autorNombre,
+                PaisDeOrigen = autorPais,
+                AnioNacimiento = autorAnioNacimiento
             };
-            libraryService.AddBook(newBook);
-            Console.WriteLine($"  - Libro '{newBook.Nombre}' agregado.");
+
+            Console.WriteLine("\nPor favor, introduce los datos del Libro:");
+            Console.Write("Nombre del Libro: ");
+            string libroNombre = Console.ReadLine() ?? string.Empty;
+            Console.Write("ISBN del Libro: ");
+            string libroISBN = Console.ReadLine() ?? string.Empty;
+            Console.Write("Género del Libro: ");
+            string libroGenero = Console.ReadLine() ?? string.Empty;
+            Console.Write("Año de Publicación del Libro: ");
+            int libroAnioPublicacion;
+            while (!int.TryParse(Console.ReadLine(), out libroAnioPublicacion))
+            {
+                Console.Write("Entrada inválida. Por favor, introduce un número para el año de publicación: ");
+            }
+            Console.Write("Editorial del Libro: ");
+            string libroEditorial = Console.ReadLine() ?? string.Empty;
+
+            Libro nuevoLibro = new Libro
+            {
+                Nombre = libroNombre,
+                ISBN = libroISBN,
+                Genero = libroGenero,
+                AnioPublicacion = libroAnioPublicacion,
+                Editorial = libroEditorial,
+                Autores = new List<Autor> { nuevoAutor }
+            };
+
+            int initialBookCount = libraryService.GetAllBooks().Count;
+            libraryService.AddBook(nuevoLibro);
+            Console.WriteLine($"  - Libro '{nuevoLibro.Nombre}' agregado interactivamente.");
 
             int finalBookCount = libraryService.GetAllBooks().Count;
-            Console.WriteLine($"  Número final de libros: {finalBookCount}");
             if (finalBookCount > initialBookCount)
             {
                 Console.WriteLine("  Verificación: El libro fue agregado exitosamente.");
