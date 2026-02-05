@@ -94,6 +94,15 @@ namespace Application
                     AnioPublicacion = 2004,
                     Editorial = "Alfaguara",
                     Autores = new List<Autor> { _autores[2] } // Laura Restrepo
+                },
+                new Libro
+                {
+                    Nombre = "The Martian",
+                    ISBN = "978-0804139021",
+                    Genero = "Ciencia ficción",
+                    AnioPublicacion = 2011,
+                    Editorial = "Crown Publishing Group",
+                    Autores = new List<Autor> { new Autor { Nombre = "Andy Weir", PaisDeOrigen = "Estados Unidos", AnioNacimiento = 1972 } }
                 }
             };
         }

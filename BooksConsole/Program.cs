@@ -83,14 +83,14 @@ namespace BooksConsole
             int initialBookCount = libraryService.GetAllBooks().Count;
             Console.WriteLine($"  Número inicial de libros: {initialBookCount}");
 
-            Autor newAuthor = new Autor { Nombre = "Haruki Murakami", PaisDeOrigen = "Japón", AnioNacimiento = 1949 };
+            Autor newAuthor = new Autor { Nombre = "Douglas Adams", PaisDeOrigen = "Reino Unido", AnioNacimiento = 1952 };
             Libro newBook = new Libro
             {
-                Nombre = "Kafka en la orilla",
-                ISBN = "978-8483832195",
-                Genero = "Realismo mágico",
-                AnioPublicacion = 2002,
-                Editorial = "Tusquets Editores",
+                Nombre = "The Hitchhiker's Guide to the Galaxy",
+                ISBN = "978-0345391803",
+                Genero = "Ciencia ficción",
+                AnioPublicacion = 1979,
+                Editorial = "Pan Books",
                 Autores = new List<Autor> { newAuthor }
             };
             libraryService.AddBook(newBook);
