@@ -10,4 +10,5 @@ namespace Core
         public required int AnioPublicacion { get; set; }
         public required string Editorial { get; set; }
         public required List<Autor> Autores { get; set; }
+    }
 }
